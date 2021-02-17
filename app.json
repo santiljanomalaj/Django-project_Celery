@@ -1,0 +1,17 @@
+{
+  "name": "ABA Nerd API",
+  "description": "ABA Nerd API.",
+  "image": "heroku/python",
+  "repository": "https://github.com/abanerd/abanerd-django",
+  "keywords": ["python", "django" ],
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "rediscloud:30"
+  ],
+  "env": {
+    "DJANGO_SECRET_KEY_2": {
+      "description": "The secret key for the Django application.",
+      "generator": "secret"
+    }
+  }
+}

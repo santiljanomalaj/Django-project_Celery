@@ -1,0 +1,48 @@
+Django
+django-autoslug
+django-storages
+
+# django_s3_sqlite
+awscli
+boto3
+# zappa
+
+# django-select-multiple-field
+djangorestframework
+djangorestframework-simplejwt
+django-cors-headers
+drf-yasg
+Markdown
+django-multiselectfield
+django-filter
+drf-url-filters
+drf-flex-fields
+djangorestframework-simplejwt
+django-rest-swagger
+# django-rest-swagger
+# drf_yasg
+drf-yasg
+Markdown
+
+redis
+
+pillow
+
+psycopg2-binary
+
+# DEPLOYMENT
+gunicorn
+gevent
+celery[redis]
+celery-progress
+
+# django-heroku # this is only required for django-heroku deployment.
+
+# User MGMT
+# drf-firebase-auth
+
+# Added for selective field serialization
+
+pandas
+django-stdimage
+
