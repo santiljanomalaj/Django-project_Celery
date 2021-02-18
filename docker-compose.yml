@@ -9,20 +9,21 @@ services:
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_PASSWORD=admin123
+      # - POSTGRES_HOST_AUTH_METHOD=trust
   redis:
     image: redis:latest
     restart: always
     expose:
       - 6379
   web:
+    restart: always
     build: .
     env_file:
       - .env.local
-    command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000 "
     volumes:
-      - .:/code
+      - ".:/app"
     ports:
       - "8000:8000"
     depends_on:
@@ -34,7 +35,7 @@ services:
       - .env.local
     command: celery -A abanerd_django worker -l info
     volumes:
-      - .:/code
+      - .:/app
     depends_on:
       - web
       - redis
@@ -44,7 +45,7 @@ services:
       - .env.local
     command: celery -A abanerd_django beat -l info
     volumes:
-      - .:/code
+      - .:/app
     depends_on:
       - web
       - redis
