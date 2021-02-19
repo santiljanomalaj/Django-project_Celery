@@ -2,8 +2,8 @@ venv/
 .idea/
 __pycache__/
 *.pyc
-.env.*
+# .env.*
 
 db.sqlite3
 celerybeat-schedule.db
-*.env
+# *.env
