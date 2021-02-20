@@ -64,7 +64,8 @@ def upload_items(self, file_id):
                     media       = ceu_media_queryset_result,
                     type        = ceu_type_queryset_result,
                     provider    = provider,
-
+                    published_date = datetime.datetime.now(),
+                    event_date = datetime.datetime.now(),
                 )
 
                 """ Having issues with this field so just not going to use it for now as most items do not include it."""
