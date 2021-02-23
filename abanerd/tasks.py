@@ -43,6 +43,8 @@ def upload_items(self, file_id):
             description = row['description']
             url         = row['url']
             image_url   = row['image_url']
+            published_date = datetime.datetime.now()
+            event_date = datetime.datetime.now()
             price       = row['price']
             media_type  = row['ceu_media_type']
             ceu_credits = row['ceu_credits']
@@ -55,15 +57,17 @@ def upload_items(self, file_id):
             if not CEUCredit.objects.filter(provider=provider, title=title).exists():
                 ceu_credit = CEUCredit.objects.create(
 
-                    title       = title,
-                    description = description,
-                    url         = url,
-                    image_url   = image_url,
-                    price       = float(price),
-                    credits     = float(ceu_credits),
-                    media       = ceu_media_queryset_result,
-                    type        = ceu_type_queryset_result,
-                    provider    = provider,
+                    title          = title,
+                    description    = description,
+                    url            = url,
+                    image_url      = image_url,
+                    price          = float(price),
+                    credits        = float(ceu_credits),
+                    media          = ceu_media_queryset_result,
+                    type           = ceu_type_queryset_result,
+                    provider       = provider,
+                    published_date = published_date,
+                    event_date     = event_date
 
                 )
 
@@ -76,7 +80,7 @@ def upload_items(self, file_id):
                         logging.warning(f"The published_data is {published_date}")
                         ceu_credit.published_date = published_date
                     except ValueError:
-                        logging.warning(ValueError)
+                        logging.warning("chekcing error in exception",ValueError)
                         pass
 
                 '''MAKE IMAGE FILE OR ASSIGN CURRENT ONE '''

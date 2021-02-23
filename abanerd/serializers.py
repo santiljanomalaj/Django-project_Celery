@@ -27,7 +27,7 @@ class CEUImageFileSerializer(FlexFieldsModelSerializer):
 
     class Meta:
         model = CEUImageFile
-        fields = ('id', 'original', 'grid', 'modal', 'large')
+        fields = ('id', 'original','preview', 'grid', 'modal', 'large')
 
     def get_original(self, obj):
         return obj.image.url
