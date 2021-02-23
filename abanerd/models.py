@@ -94,7 +94,7 @@ class CSVFile(models.Model):
     file = models.FileField(upload_to='csv-data-upload-files/')
 
     def __str__(self):
-        return self.provider.name
+        return self.provider
 
 class CEUSubmission(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)

@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.9"
 
 services:
   redis:
@@ -9,10 +9,11 @@ services:
   web:
     build: .
     env_file:
-      - .env.local
+      - .env.prod
     command: sh -c "python manage.py collectstatic --no-input &&
                     python manage.py migrate &&
                     python manage.py loaddata data/static.json &&
+                    python manage.py test &&
                     gunicorn --worker-class gevent --log-level debug abanerd_django.wsgi -b 0.0.0.0:8000"
     volumes:
       - .:/code
@@ -23,7 +24,7 @@ services:
   celery:
     build: .
     env_file:
-      - .env.local
+      - .env.prod
     command: celery -A abanerd_django worker -l info
     volumes:
       - .:/code
@@ -33,7 +34,7 @@ services:
   celery-beat:
     build: .
     env_file:
-      - .env.local
+      - .env.prod
     command: celery -A abanerd_django beat -l info
     volumes:
       - .:/code

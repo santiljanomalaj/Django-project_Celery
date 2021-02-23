@@ -21,7 +21,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api/provider/filter/', ProvidersFilterView.as_view()),
     path('api/max/price/', MaxPriceView.as_view()),
-    path('api/inject/data/', views.InjectDataView.as_view(), name='inject_data'),
+    path('api/inject/data/', views.InjectDataView.as_view()),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),

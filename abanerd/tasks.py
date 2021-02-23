@@ -5,6 +5,7 @@ import logging
 import pandas as pd
 from PIL import UnidentifiedImageError
 from celery import shared_task
+from celery_progress.backend import ProgressRecorder
 
 from abanerd.models import CSVFile, CEUCredit, Provider, CEUMediaType, CEUCreditType
 from abanerd.utils import get_or_create_ceu_image_object
@@ -24,9 +25,12 @@ def upload_items(self, file_id):
     data['price'] = pd.to_numeric(data['price'], errors='coerce')
     data['ceu_credits'] = pd.to_numeric(data['ceu_credits'], errors='coerce')
 
+    """ CELERY PROGRESS BAR INIT"""
+    progress_recorder = ProgressRecorder(self)
+
     count = 0
     for index, row in data.iterrows():
-
+        progress_recorder.set_progress(index, len(data.index), f'The number proceeded: {(index)}')
         count += 1
         title = row['title']
         logging.warning(f"[Record {count}] Processing the line '{title}'")
@@ -104,3 +108,4 @@ def upload_items(self, file_id):
                 ceu_credit.save()
         else:
             logging.warning(f'The credit "{title}" is already present.')
+    return {"status" : "Completed"}

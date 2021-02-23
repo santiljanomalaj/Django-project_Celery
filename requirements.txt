@@ -35,6 +35,7 @@ gunicorn
 gevent
 celery[redis]
 celery-progress
+django-celery-results
 
 # django-heroku # this is only required for django-heroku deployment.
 

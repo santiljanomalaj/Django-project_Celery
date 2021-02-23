@@ -2,9 +2,13 @@ from django.db.models import Count
 import django_filters
 from rest_framework import viewsets, permissions, filters, status
 from rest_framework.response import Response
+<<<<<<< HEAD
 from filters.mixins import (
     FiltersMixin,
 )
+=======
+
+>>>>>>> initalize
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_flex_fields import FlexFieldsModelSerializer
@@ -22,7 +26,15 @@ class IsAuthenticatedOrCreate(permissions.IsAuthenticated):
             return True
         return super(IsAuthenticatedOrCreate, self).has_permission(request, view)
 
+class ProviderCustomerFilterSet(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr = 'icontains')
+    url = django_filters.CharFilter(lookup_expr = 'icontains')
+    slug = django_filters.CharFilter(lookup_expr = 'icontains')
+    class Meta:
+        fields = ('name', 'slug', 'url')
+        model = Provider
 
+<<<<<<< HEAD
 class ProviderCustomFilterSet(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     url = django_filters.CharFilter(lookup_expr='icontains')
@@ -34,13 +46,24 @@ class ProviderCustomFilterSet(django_filters.FilterSet):
 class ProviderViewSet(FiltersMixin,viewsets.ModelViewSet):
     """
         Adding filtermixin for pagination along with django_filter
+=======
+class ProviderViewSet(viewsets.ModelViewSet):
+    """
+        
+>>>>>>> initalize
     """
     permission_classes = (IsAuthenticatedOrCreate,)
     queryset = Provider.objects.all().order_by('name')
     serializer_class = ProviderSerializer
+<<<<<<< HEAD
     filterset_class = ProviderCustomFilterSet
     filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
     paginate_by = 12
+=======
+    filterset_class = ProviderCustomerFilterSet
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    paginate_by =12
+>>>>>>> initalize
     pagination_class = ResultsSetPagination
 
 class CEUMediaTypeCustomFilterSet(django_filters.FilterSet):
@@ -48,6 +71,7 @@ class CEUMediaTypeCustomFilterSet(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     slug = django_filters.CharFilter(lookup_expr='icontains')
     class Meta:
+<<<<<<< HEAD
         fields = ('id','name','slug')
         model = CEUMediaType
    
@@ -55,32 +79,59 @@ class CEUMediaTypeCustomFilterSet(django_filters.FilterSet):
 class CEUMediaTypeViewSet(FiltersMixin, viewsets.ModelViewSet):
     """
         Adding filtermixin for pagination along with django_filter
+=======
+        fields = ('id', 'name', 'slug')
+        model = CEUMediaType
+        
+class CEUMediaTypeViewSet(viewsets.ModelViewSet):
+    """
+        
+>>>>>>> initalize
     """
     permission_classes = (IsAuthenticatedOrCreate,)
     queryset = CEUMediaType.objects.all().order_by('id')
     serializer_class = CEUMediaTypeSerializer
     filterset_class = CEUMediaTypeCustomFilterSet
+<<<<<<< HEAD
     filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
     paginate_by = 12
     pagination_class = ResultsSetPagination
     
+=======
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    paginate_by = 12
+    pagination_class = ResultsSetPagination
+
+>>>>>>> initalize
 class CEUCreditTypeCustomFilterSet(django_filters.FilterSet):
     id = django_filters.CharFilter(lookup_expr='icontains')
     name = django_filters.CharFilter(lookup_expr='icontains')
     slug = django_filters.CharFilter(lookup_expr='icontains')
     class Meta:
+<<<<<<< HEAD
         fields = ('id','name','slug')
+=======
+        fields = ('id', 'name', 'slug')
+>>>>>>> initalize
         model = CEUCreditType
 
-class CEUCreditTypeViewSet(FiltersMixin, viewsets.ModelViewSet):
+class CEUCreditTypeViewSet(viewsets.ModelViewSet):
     """
+<<<<<<< HEAD
         Adding filtermixin for pagination along with django_filter
+=======
+        
+>>>>>>> initalize
     """
     permission_classes = (IsAuthenticatedOrCreate,)
     queryset = CEUCreditType.objects.all().order_by('id')
     serializer_class = CEUCreditTypeSerializer
     filterset_class = CEUCreditTypeCustomFilterSet
+<<<<<<< HEAD
     filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
+=======
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+>>>>>>> initalize
     paginate_by = 12
     pagination_class = ResultsSetPagination
 
@@ -89,17 +140,26 @@ class CEUSubmissionCustomFilterSet(django_filters.FilterSet):
     url = django_filters.CharFilter(lookup_expr='icontains')
     slug = django_filters.CharFilter(lookup_expr='icontains')
     class Meta:
+<<<<<<< HEAD
         fields = ('title','url','slug')
+=======
+        fields = ('title', 'url', 'slug')
+>>>>>>> initalize
         model = CEUSubmission
 
-class CEUSubmissionViewSet(FiltersMixin, viewsets.ModelViewSet):
+class CEUSubmissionViewSet(viewsets.ModelViewSet):
     """
+<<<<<<< HEAD
         Adding filtermixin for pagination along with django_filter
+=======
+        
+>>>>>>> initalize
     """
     permission_classes = (IsAuthenticatedOrCreate,)
     queryset = CEUSubmission.objects.all().order_by('title')
     serializer_class = ProviderSerializer
     filterset_class = CEUSubmissionCustomFilterSet
+<<<<<<< HEAD
     filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
     paginate_by = 12
     pagination_class = ResultsSetPagination
@@ -116,16 +176,25 @@ class CEUSubmissionViewSet(FiltersMixin, viewsets.ModelViewSet):
     #     'slug_contains': 'slug__icontains',
     # }
 
+=======
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    paginate_by = 12
+    pagination_class = ResultsSetPagination
+>>>>>>> initalize
 
 class CEUCreditCustomFilterSet(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains')
     description = django_filters.CharFilter(lookup_expr='icontains')
     provider = django_filters.CharFilter(lookup_expr='icontains')
     class Meta:
+<<<<<<< HEAD
         fields = ('title','description','provider')
+=======
+        fields = ('title', 'description', 'provider')
+>>>>>>> initalize
         model = CEUCredit
 
-class CEUCreditViewSet(FiltersMixin, viewsets.ModelViewSet):
+class CEUCreditViewSet(viewsets.ModelViewSet):
     """
 
     """
@@ -133,6 +202,7 @@ class CEUCreditViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = CEUCredit.objects.all().order_by('title')
     serializer_class = CEUCreditSerializer
     filterset_class = CEUCreditCustomFilterSet
+<<<<<<< HEAD
     filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
     paginate_by = 12
     pagination_class = ResultsSetPagination
@@ -160,6 +230,11 @@ class CEUCreditViewSet(FiltersMixin, viewsets.ModelViewSet):
     #     'provider_name': 'provider_name__icontains',
     #     'provider_name_exact': 'provider_name__exact',
     # }
+=======
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    paginate_by = 12
+    pagination_class = ResultsSetPaginationCEUCredit
+>>>>>>> initalize
 
     def common_data(self, query_data, object_data):
         if (set(query_data) & set(object_data)):
@@ -184,7 +259,16 @@ class CEUCreditViewSet(FiltersMixin, viewsets.ModelViewSet):
             self.queryset = self.queryset.filter(is_featured=True)
         return self.apply_filters(self.queryset)
 
+class CEUImageFileCustomFilterSet(django_filters.FilterSet):
+    filename = django_filters.CharFilter(lookup_expr='icontains')
+    image_url = django_filters.CharFilter(lookup_expr='icontains')
+    class Meta:
+        fields = ('filename','image_url')
+        model = CEUImageFile
 
+class CEUImageFileViewSet(viewsets.ModelViewSet):
+
+<<<<<<< HEAD
 class CEUImageFileCustomFilterSet(django_filters.FilterSet):
     filename = django_filters.CharFilter(lookup_expr='icontains')
     image_url = django_filters.CharFilter(lookup_expr='icontains')
@@ -198,6 +282,13 @@ class CEUImageFileViewSet(FiltersMixin, viewsets.ModelViewSet):
     serializer_class = CEUImageFileSerializer
     filterset_class = CEUImageFileCustomFilterSet
     filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
+=======
+    permission_classes = (IsAuthenticatedOrCreate,)
+    queryset = CEUImageFile.objects.all().order_by('filename')
+    serializer_class = CEUImageFileSerializer
+    filterset_class =CEUImageFileCustomFilterSet
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+>>>>>>> initalize
     paginate_by = 12
     pagination_class = ResultsSetPagination
 
