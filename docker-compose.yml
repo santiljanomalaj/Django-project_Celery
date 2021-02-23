@@ -21,7 +21,11 @@ services:
     build: .
     env_file:
       - .env.local
+<<<<<<< HEAD
     command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8001 "
+=======
+    command: bash -c "python manage.py migrate --noinput && python manage.py test && python manage.py runserver 0.0.0.0:8000 "
+>>>>>>> aaf6abed80549c10b84465bb119c3de7f5808097
     volumes:
       - ".:/app"
     ports:

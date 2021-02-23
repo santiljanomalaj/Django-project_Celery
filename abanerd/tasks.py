@@ -57,18 +57,17 @@ def upload_items(self, file_id):
             if not CEUCredit.objects.filter(provider=provider, title=title).exists():
                 ceu_credit = CEUCredit.objects.create(
 
-                    title          = title,
-                    description    = description,
-                    url            = url,
-                    image_url      = image_url,
-                    price          = float(price),
-                    credits        = float(ceu_credits),
-                    media          = ceu_media_queryset_result,
-                    type           = ceu_type_queryset_result,
-                    provider       = provider,
-                    published_date = published_date,
-                    event_date     = event_date
-
+                    title       = title,
+                    description = description,
+                    url         = url,
+                    image_url   = image_url,
+                    price       = float(price),
+                    credits     = float(ceu_credits),
+                    media       = ceu_media_queryset_result,
+                    type        = ceu_type_queryset_result,
+                    provider    = provider,
+                    published_date = datetime.datetime.now(),
+                    event_date = datetime.datetime.now(),
                 )
 
                 """ Having issues with this field so just not going to use it for now as most items do not include it."""
